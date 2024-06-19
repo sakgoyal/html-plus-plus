@@ -7,20 +7,6 @@
     static_assert(((std::is_base_of_v<BASE_TAG, Children> || std::is_same_v<void, Children>) && ...), \
                   "<" #TAG_NAME "> must contain type 'void' or an element that is a subclass of " #BASE_TAG  " for all template parameters");
 
-// Not yet implemented in GCC 9 std lib; will be in C++20, but I had
-// to add it here for now
-template< class InputIt, class Size, class OutputIt>
-constexpr OutputIt copy_n(InputIt first, Size count, OutputIt result)
-{
-    if (count > 0) {
-        *result++ = *first;
-        for (Size i = 1; i < count; ++i) {
-            *result++ = *++first;
-        }
-    }
-    return result;
-}
-
 constexpr void add_indent(std::string &page_content, unsigned indent)
 {
     for(unsigned i = 0; i < indent; ++i) {
